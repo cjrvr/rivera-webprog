@@ -1,19 +1,22 @@
-import React from 'react';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+ 
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ArticlePage from "./pages/ArticlePage";
+ 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to My React App!!!!!!!!!!!!</h1>
-        <p>
-          Name: Caila Jade G. Rivera<br />
-          Section: INF235<br />
-          <a href='https://github.com/cjrvr/rivera-webprog' >Github Link: </a>
-      </p>
-      </header>
-      </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/articles" element={<ArticlePage />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
-
+ 
 export default App;
