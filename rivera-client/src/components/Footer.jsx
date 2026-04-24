@@ -1,4 +1,4 @@
-import Navbar from "./NavBar";
+import Navbar from "./Navbar";
 import logo from "../assets/logo.jpeg";
  
 const Layout = ({ children }) => {

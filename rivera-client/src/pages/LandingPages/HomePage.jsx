@@ -1,28 +1,24 @@
 import { Link } from "react-router-dom";
-import def from "../assets/def.jpeg";
-import wire from "../assets/wire.jpeg";
-import wirez from "../assets/wirez.jpeg";
-import wiree from "../assets/wiree.jpeg";
+import def from "../../assets/def.jpeg";
+import wire from "../../assets/wire.jpeg";
+import wirez from "../../assets/wirez.jpeg";
+import wiree from "../../assets/wiree.jpeg";
 
 const HomePage = () => {
-  const nextRace = {
-    name: "Miami Grand Prix",
-    date: "May 4, 2026",
-    location: "Miami International Autodrome",
-    countdown: "25 Days Left",
-  };
-
   return (
     <div className="bg-black min-h-screen px-6 md:px-16 py-10 space-y-16">
 
-      {/* PRE-HERO WELCOME */}
-      <div className="relative z-30 text-center flex justify-center mb-12">
-        <p className="font-f1 text-white text-2xl md:text-5xl tracking-wide max-w-3xl mx-auto">
+    
+      <div className="relative z-30 text-center space-y-2 mb-12">
+        <h2 className="welcome-font text-6xl md:text-7xl font-extrabold text-white">
+          Welcome to F1
+        </h2>
+        <p className="text-white text-xl md:text-5xl max-w-3xl mx-auto">
           WELCOME TO FORMULA 1.
         </p>
       </div>
 
-      {/* HERO SECTION */}
+   
       <div className="relative rounded-xl overflow-hidden z-10">
         <img 
           src={def} 
@@ -30,9 +26,12 @@ const HomePage = () => {
           className="w-full h-[400px] object-cover"
         />
 
-        {/* OVERLAY */}
+       
         <div className="absolute inset-0 bg-black/60 flex items-end justify-center">
           <div className="text-center text-white mb-10 px-4">
+            <h1 className="text-6xl md:text-8xl font-bold mb-2">
+              Welcome to F1
+            </h1>
             <p className="text-gray-300 text-lg">
               Where speed meets strategy.
             </p>
@@ -40,18 +39,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* RACE COUNTDOWN SECTION */}
-      <div className="max-w-2xl mx-auto border border-gray-700 bg-gray-900 rounded-xl p-6 text-white">
-        <p className="inline-block bg-red-600 px-3 py-1 rounded-md text-xs font-semibold mb-3">
-          NEXT RACE
-        </p>
-        <h2 className="text-2xl font-bold !text-white mb-2">{nextRace.name}</h2>
-        <p className="text-sm text-white mb-1">{nextRace.date}</p>
-        <p className="text-sm text-white mb-4">{nextRace.location}</p>
-        <p className="text-sm font-semibold text-red-500">{nextRace.countdown}</p>
-      </div>
-
-      {/* KPI SECTION */}
+     
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {["SPEED", "SKILL", "FIERCE", "POWER"].map((item, i) => (
           <div 
@@ -67,7 +55,6 @@ const HomePage = () => {
         ))}
       </div>
 
-      {/* FEATURE SECTION */}
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-white">
           Featured Insights
