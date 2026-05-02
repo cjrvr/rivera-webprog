@@ -29,7 +29,6 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ✅ FIXED: removed /auth prefix
   {
     path: "/signin",
     element: <SignInPage />,

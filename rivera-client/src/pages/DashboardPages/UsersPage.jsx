@@ -2,7 +2,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Box, Typography } from "@mui/material";
 
 export const driversData = [
-  { id: 1, driver: "Max Verstappen", team: "Red Bull Racing", points: 437 },
+  { id: 1, driver: "Max Verstappen", team: "Red Bull Racing", points: 435 },
   { id: 2, driver: "Lando Norris", team: "McLaren", points: 374 },
   { id: 3, driver: "Charles Leclerc", team: "Ferrari", points: 356 },
   { id: 4, driver: "Oscar Piastri", team: "McLaren", points: 292 },
