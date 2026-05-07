@@ -1,87 +1,383 @@
+import { useState } from "react";
+import {
+  Box,
+  Typography,
+  TextField,
+  MenuItem,
+  Button,
+  Paper,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
+
 import { DataGrid } from "@mui/x-data-grid";
-import { Box, Typography } from "@mui/material";
 
 export const driversData = [
-  { id: 1, driver: "Max Verstappen", team: "Red Bull Racing", points: 435 },
-  { id: 2, driver: "Lando Norris", team: "McLaren", points: 374 },
-  { id: 3, driver: "Charles Leclerc", team: "Ferrari", points: 356 },
-  { id: 4, driver: "Oscar Piastri", team: "McLaren", points: 292 },
-  { id: 5, driver: "Carlos Sainz", team: "Ferrari", points: 290 },
-  { id: 6, driver: "George Russell", team: "Mercedes", points: 245 },
-  { id: 7, driver: "Lewis Hamilton", team: "Mercedes", points: 223 },
-  { id: 8, driver: "Sergio Perez", team: "Red Bull Racing", points: 152 },
+  {
+    id: 1,
+    firstName: "Max",
+    lastName: "Verstappen",
+    username: "max33",
+    email: "max@gmail.com",
+    role: "Champion",
+    gender: "Male",
+    status: "Active",
+    age: 27,
+    contact: "09123456789",
+  },
+  {
+    id: 2,
+    firstName: "Lewis",
+    lastName: "Hamilton",
+    username: "ham44",
+    email: "lewis@gmail.com",
+    role: "Driver",
+    gender: "Male",
+    status: "Inactive",
+    age: 39,
+    contact: "09987654321",
+  },
+  {
+    id: 3,
+    firstName: "Charles",
+    lastName: "Leclerc",
+    username: "charles16",
+    email: "charles@gmail.com",
+    role: "Driver",
+    gender: "Male",
+    status: "Active",
+    age: 26,
+    contact: "09111111111",
+  },
+  {
+    id: 4,
+    firstName: "Lando",
+    lastName: "Norris",
+    username: "lando4",
+    email: "lando@gmail.com",
+    role: "Driver",
+    gender: "Male",
+    status: "Active",
+    age: 26,
+    contact: "09111111111",
+  },
+  {
+    id: 5,
+    firstName: "Carlos",
+    lastName: "Sainz",
+    username: "carlos5",
+    email: "carlos@gmail.com",
+    role: "Driver",
+    gender: "Male",
+    status: "Active",
+    age: 26,
+    contact: "09111111111",
+  },
 ];
 
-const cols = [
-  { field: "id", headerName: "No.", width: 70 },
-  { field: "driver", headerName: "Driver", flex: 1, minWidth: 180 },
-  { field: "team", headerName: "Team", flex: 1, minWidth: 160 },
-  { field: "points", headerName: "Pts", width: 100 },
+const columns = [
+  { field: "id", headerName: "ID", width: 70 },
+
+  {
+    field: "firstName",
+    headerName: "First Name",
+    flex: 1,
+  },
+
+  {
+    field: "lastName",
+    headerName: "Last Name",
+    flex: 1,
+  },
+
+  {
+    field: "username",
+    headerName: "Username",
+    flex: 1,
+  },
+
+  {
+    field: "email",
+    headerName: "Email",
+    flex: 1,
+  },
+
+  {
+    field: "role",
+    headerName: "Role",
+    flex: 1,
+  },
+
+  {
+    field: "status",
+    headerName: "Status",
+    flex: 1,
+  },
 ];
 
 const UsersPage = () => {
+  const [search, setSearch] = useState("");
+
+  const [roleFilter, setRoleFilter] = useState("");
+
+  const [genderFilter, setGenderFilter] = useState("");
+
+  const [statusFilter, setStatusFilter] = useState("");
+
+  const [open, setOpen] = useState(false);
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    contact: "",
+    age: "",
+  });
+
+  const filteredRows = driversData.filter((row) => {
+    const matchesSearch =
+      row.firstName.toLowerCase().includes(search.toLowerCase()) ||
+      row.lastName.toLowerCase().includes(search.toLowerCase()) ||
+      row.email.toLowerCase().includes(search.toLowerCase()) ||
+      row.username.toLowerCase().includes(search.toLowerCase());
+
+    const matchesRole =
+      roleFilter === "" || row.role === roleFilter;
+
+    const matchesGender =
+      genderFilter === "" || row.gender === genderFilter;
+
+    const matchesStatus =
+      statusFilter === "" || row.status === statusFilter;
+
+    return (
+      matchesSearch &&
+      matchesRole &&
+      matchesGender &&
+      matchesStatus
+    );
+  });
+
+  const handleSubmit = () => {
+    if (formData.password.length < 8) {
+      alert("Password must be at least 8 characters");
+      return;
+    }
+
+    if (!/^\d{11}$/.test(formData.contact)) {
+      alert("Contact number must be 11 digits");
+      return;
+    }
+
+    if (isNaN(formData.age)) {
+      alert("Age must be numbers only");
+      return;
+    }
+
+    if (formData.username.includes(" ")) {
+      alert("Username must not contain spaces");
+      return;
+    }
+
+    alert("User added successfully!");
+    setOpen(false);
+  };
+
   return (
-    <Box
-      sx={{
-        bgcolor: "#ffffff",
-        color: "#111827",
-        p: 3,
-        borderRadius: 2,
-        border: "1px solid #e5e7eb",
-      }}
-    >
-      <Typography variant="h5" mb={2} sx={{ color: "#111827", fontWeight: "bold" }}>
-        Drivers grid
+    <Box>
+
+      <Typography
+        variant="h4"
+        sx={{
+          color: "white",
+          fontWeight: "bold",
+          mb: 3,
+        }}
+      >
+        Drivers Management
       </Typography>
+
+      {/* SEARCH + FILTERS */}
+
+      <Paper
+        sx={{
+          p: 2,
+          mb: 3,
+          display: "flex",
+          gap: 2,
+          flexWrap: "wrap",
+          backgroundColor: "#1f2937",
+        }}
+      >
+        <TextField
+          label="Search"
+          variant="outlined"
+          size="small"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+          }}
+        />
+
+        <TextField
+          select
+          label="Role"
+          size="small"
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            width: 150,
+          }}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="Champion">Champion</MenuItem>
+          <MenuItem value="Driver">Driver</MenuItem>
+        </TextField>
+
+        <TextField
+          select
+          label="Gender"
+          size="small"
+          value={genderFilter}
+          onChange={(e) => setGenderFilter(e.target.value)}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            width: 150,
+          }}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
+        </TextField>
+
+        <TextField
+          select
+          label="Status"
+          size="small"
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            width: 150,
+          }}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="Active">Active</MenuItem>
+          <MenuItem value="Inactive">Inactive</MenuItem>
+        </TextField>
+
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#ef4444",
+          }}
+          onClick={() => setOpen(true)}
+        >
+          ADD USER
+        </Button>
+      </Paper>
+
+      {/* TABLE */}
 
       <Box
         sx={{
-          height: 400,
-          width: "100%",
-          bgcolor: "#ffffff",
-          border: "1px solid #d1d5db",
-          borderRadius: 2,
-          padding: "8px",
+          height: 500,
+          backgroundColor: "white",
+          borderRadius: 3,
+          p: 2,
         }}
       >
         <DataGrid
-          rows={driversData}
-          columns={cols}
+          rows={filteredRows}
+          columns={columns}
           pageSizeOptions={[5, 10]}
           initialState={{
-            pagination: { paginationModel: { pageSize: 5 } },
-          }}
-          sx={{
-            border: "none",
-            bgcolor: "#ffffff",
-            color: "#111827",
-            "& .MuiDataGrid-cell": {
-              borderBottom: "1px solid #e5e7eb",
-              color: "#111827",
-            },
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: "#f9fafb",
-              color: "#b91c1c",
-              fontWeight: "bold",
-              borderBottom: "2px solid #ef4444",
-            },
-            "& .MuiDataGrid-columnSeparator": {
-              color: "#e5e7eb",
-            },
-            "& .MuiDataGrid-footerContainer": {
-              borderTop: "1px solid #e5e7eb",
-              backgroundColor: "#f3f4f6",
-              color: "#374151",
-            },
-            "& .MuiTablePagination-root": {
-              color: "#374151",
-            },
-            "& .MuiTablePagination-selectIcon": {
-              color: "#374151",
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
             },
           }}
         />
       </Box>
+
+      {/* MODAL FORM */}
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Add Driver</DialogTitle>
+
+        <DialogContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            mt: 1,
+            width: 350,
+          }}
+        >
+          <TextField
+            label="Username"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                username: e.target.value,
+              })
+            }
+          />
+
+          <TextField
+            label="Password"
+            type="password"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                password: e.target.value,
+              })
+            }
+          />
+
+          <TextField
+            label="Contact Number"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                contact: e.target.value,
+              })
+            }
+          />
+
+          <TextField
+            label="Age"
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                age: e.target.value,
+              })
+            }
+          />
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+          >
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </Box>
   );
 };

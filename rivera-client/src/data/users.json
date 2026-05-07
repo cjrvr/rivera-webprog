@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "firstName": "Max",
+    "lastName": "Verstappen",
+    "username": "max33",
+    "email": "max@gmail.com",
+    "role": "Champion",
+    "gender": "Male",
+    "status": "Active",
+    "age": 27,
+    "contact": "09123456789"
+  },
+  {
+    "id": 2,
+    "firstName": "Lewis",
+    "lastName": "Hamilton",
+    "username": "ham44",
+    "email": "lewis@gmail.com",
+    "role": "Driver",
+    "gender": "Male",
+    "status": "Inactive",
+    "age": 39,
+    "contact": "09987654321"
+  },
+  {
+    "id": 3,
+    "firstName": "Charles",
+    "lastName": "Leclerc",
+    "username": "charles16",
+    "email": "charles@gmail.com",
+    "role": "Driver",
+    "gender": "Male",
+    "status": "Active",
+    "age": 26,
+    "contact": "09111111111"
+  },
+  {
+    "id": 4,
+    "firstName": "Lando",
+    "lastName": "Norris",
+    "username": "lando4",
+    "email": "lando@gmail.com",
+    "role": "Driver",
+    "gender": "Male",
+    "status": "Active",
+    "age": 24,
+    "contact": "09222222222"
+  },
+  {
+    "id": 5,
+    "firstName": "Carlos",
+    "lastName": "Sainz",
+    "username": "carlos55",
+    "email": "carlos@gmail.com",
+    "role": "Driver",
+    "gender": "Male",
+    "status": "Inactive",
+    "age": 29,
+    "contact": "09333333333"
+  }
+]

@@ -1,8 +1,8 @@
-import prep from "./prep.jpeg";
-import pit from "./pit.jpeg";
-import quali from "./quali.jpeg";
-import tire from "./tire.jpeg";
-import rival from "./rival.jpeg";
+import prep from "../assets/prep.jpeg";
+import pit from "../assets/pit.jpeg";
+import quali from "../assets/quali.jpeg";
+import tire from "../assets/tire.jpeg";
+import rival from "../assets/rival.jpeg";
 
 const articleContent = [
   {

@@ -1,6 +1,6 @@
 import ArticleList from "../../components/ArticleList";
 import { Link, useParams } from "react-router-dom";
-import articleContent from "../../assets/article-content";
+import articleContent from "../../data/article-content";
 
 const ArticleListPage = () => {
   const { articleId } = useParams();
