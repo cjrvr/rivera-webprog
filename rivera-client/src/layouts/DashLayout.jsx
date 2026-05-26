@@ -17,8 +17,7 @@ const DashLayout = () => {
   const loc = useLocation();
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#000000" }}>
-      {/* top bar black like my navbar */}
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#0f0f0f" }}>
       <AppBar
         position="fixed"
         sx={{
@@ -28,7 +27,7 @@ const DashLayout = () => {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{ color: "white", fontWeight: "bold" }}>
+          <Typography variant="h6" sx={{ color: "#ffffff", fontWeight: "bold" }}>
             F1 Dashboard
           </Typography>
         </Toolbar>
@@ -41,53 +40,72 @@ const DashLayout = () => {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             backgroundColor: "#111111",
-            color: "white",
+            color: "#ffffff",
             borderRight: "1px solid #1f2937",
           },
         }}
       >
         <Toolbar />
 
-        <List>
-          {/* overview */}
+        <List sx={{ px: 1 }}>
           <ListItem
             component={Link}
             to="/dashboard"
             sx={{
               color: loc.pathname === "/dashboard" ? "#ffffff" : "#9ca3af",
               bgcolor: loc.pathname === "/dashboard" ? "#ef4444" : "transparent",
-              borderRadius: 1,
-              mb: 0.5,
+              borderRadius: 2,
+              mb: 1,
+              textDecoration: "none",
             }}
           >
             <ListItemText primary="Overview" />
           </ListItem>
 
-          {/* reports / telemetry */}
           <ListItem
             component={Link}
             to="/reports"
             sx={{
               color: loc.pathname === "/reports" ? "#ffffff" : "#9ca3af",
               bgcolor: loc.pathname === "/reports" ? "#ef4444" : "transparent",
-              borderRadius: 1,
-              mb: 0.5,
+              borderRadius: 2,
+              mb: 1,
+              textDecoration: "none",
             }}
           >
             <ListItemText primary="Reports" />
           </ListItem>
 
-          {/* drivers */}
           <ListItem
             component={Link}
             to="/users"
             sx={{
               color: loc.pathname === "/users" ? "#ffffff" : "#9ca3af",
               bgcolor: loc.pathname === "/users" ? "#ef4444" : "transparent",
-              borderRadius: 1,
+              borderRadius: 2,
+              mb: 1,
+              textDecoration: "none",
             }}
           >
             <ListItemText primary="Drivers" />
+          </ListItem>
+
+          <ListItem
+            component={Link}
+            to="/dashboard/articles"
+            sx={{
+              color:
+                loc.pathname === "/dashboard/articles" ? "#ffffff" : "#9ca3af",
+              bgcolor:
+                loc.pathname === "/dashboard/articles"
+                  ? "#ef4444"
+                  : "transparent",
+              borderRadius: 2,
+              mb: 1,
+              textDecoration: "none",
+            }}
+          >
+            <ListItemText primary="Articles" />
           </ListItem>
         </List>
       </Drawer>
@@ -99,6 +117,10 @@ const DashLayout = () => {
           p: 3,
           bgcolor: "#0f0f0f",
           minHeight: "100vh",
+          color: "#ffffff",
+          "& *": {
+            color: "inherit",
+          },
         }}
       >
         <Toolbar />

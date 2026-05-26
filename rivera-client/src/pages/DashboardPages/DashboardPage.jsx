@@ -1,34 +1,95 @@
-import { Box, Paper, Typography } from "@mui/material";
-import { driversData } from "./UsersPage";
+import {
+  Box,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 
-// garage-style summary stacked list (different from 3 side by side tiles)
+import SpeedIcon from "@mui/icons-material/Speed";
+import GroupsIcon from "@mui/icons-material/Groups";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+
 const DashboardPage = () => {
-  var howManyDrivers = driversData.length;
-
   return (
-    <Box sx={{ maxWidth: 560, margin: "auto" }}>
-      <Typography sx={{ color: "white", fontWeight: "bold", fontSize: "1.6rem", mb: 2 }}>
-        Race weekend board
+    <Box>
+
+      <Typography
+        variant="h4"
+        sx={{
+          color: "white",
+          fontWeight: "bold",
+          mb: 4,
+        }}
+      >
+        F1 Dashboard Overview
       </Typography>
 
-      <Paper sx={{ p: 2, mb: 1.5, bgcolor: "#252525", color: "white" }}>
-        <Typography sx={{ fontSize: "0.9rem", color: "#ccc" }}>
-          Entries on leaderboard
-        </Typography>
-        <Typography sx={{ fontSize: "1.75rem", fontWeight: "bold" }}>{howManyDrivers}</Typography>
-      </Paper>
+      <Grid container spacing={3}>
 
-      <Paper sx={{ p: 2, mb: 1.5, bgcolor: "white", color: "black" }}>
-        <Typography sx={{ fontSize: "0.9rem", color: "#555" }}>
-          Telemetry records stored
-        </Typography>
-        <Typography sx={{ fontSize: "1.75rem", fontWeight: "bold", color: "#b91c1c" }}>75</Typography>
-      </Paper>
+        <Grid item xs={12} md={4}>
+          <Paper
+            sx={{
+              p: 3,
+              backgroundColor: "#ef4444",
+              color: "white",
+              borderRadius: 3,
+            }}
+          >
+            <SpeedIcon sx={{ fontSize: 40 }} />
 
-      <Paper sx={{ p: 2, bgcolor: "#151515", color: "white", borderLeft: "5px solid #ef4444" }}>
-        <Typography sx={{ fontSize: "0.9rem", color: "#bbb" }}>Crowd turnout</Typography>
-        <Typography sx={{ fontSize: "1.75rem", fontWeight: "bold" }}>1240</Typography>
-      </Paper>
+            <Typography variant="h6">
+              Fastest Laps
+            </Typography>
+
+            <Typography variant="h3">
+              128
+            </Typography>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Paper
+            sx={{
+              p: 3,
+              backgroundColor: "white",
+              borderRadius: 3,
+            }}
+          >
+            <GroupsIcon sx={{ fontSize: 40 }} />
+
+            <Typography variant="h6">
+              Drivers
+            </Typography>
+
+            <Typography variant="h3">
+              20
+            </Typography>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Paper
+            sx={{
+              p: 3,
+              backgroundColor: "#111827",
+              color: "white",
+              borderRadius: 3,
+            }}
+          >
+            <EmojiEventsIcon sx={{ fontSize: 40 }} />
+
+            <Typography variant="h6">
+              Championships
+            </Typography>
+
+            <Typography variant="h3">
+              16
+            </Typography>
+          </Paper>
+        </Grid>
+
+      </Grid>
+
     </Box>
   );
 };
