@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getUsers, createUser } from "../../services/UserService";
 
 function UsersPage() {
-  const userType = localStorage.getItem("type");
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+  const userType = savedUser?.type;
 
   const [users, setUsers] = useState([]);
 
@@ -51,7 +52,6 @@ function UsersPage() {
 
     try {
       await createUser(formData);
-
       alert("User added successfully");
 
       setFormData({
@@ -100,84 +100,37 @@ function UsersPage() {
           onSubmit={handleSubmit}
           className="mt-8 rounded-2xl border border-white/10 bg-[#151515] p-8 shadow-xl"
         >
-          <div className="mb-5">
-            <label className={labelClass}>First Name</label>
+          {[
+            ["firstName", "First Name", "Enter first name"],
+            ["lastName", "Last Name", "Enter last name"],
+            ["age", "Age", "Enter age"],
+            ["gender", "Gender", "Enter gender"],
+            ["contactNumber", "Contact Number", "Enter contact number"],
+            ["email", "Email", "Enter email address"],
+            ["username", "Username", "Enter username"],
+            ["password", "Password", "Enter password"],
+            ["address", "Address", "Enter address"],
+          ].map(([name, label, placeholder]) => (
+            <div className="mb-5" key={name}>
+              <label className={labelClass}>{label}</label>
 
-            <input
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="Enter first name"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Last Name</label>
-
-            <input
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              placeholder="Enter last name"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Age</label>
-
-            <input
-              name="age"
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Enter age"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Gender</label>
-
-            <input
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              placeholder="Enter gender"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Contact Number</label>
-
-            <input
-              name="contactNumber"
-              value={formData.contactNumber}
-              onChange={handleChange}
-              placeholder="Enter contact number"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Email</label>
-
-            <input
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter email address"
-              className={inputClass}
-              required
-            />
-          </div>
+              <input
+                name={name}
+                type={
+                  name === "email"
+                    ? "email"
+                    : name === "password"
+                    ? "password"
+                    : "text"
+                }
+                value={formData[name]}
+                onChange={handleChange}
+                placeholder={placeholder}
+                className={inputClass}
+                required
+              />
+            </div>
+          ))}
 
           <div className="mb-5">
             <label className={labelClass}>User Type</label>
@@ -195,46 +148,6 @@ function UsersPage() {
             </select>
           </div>
 
-          <div className="mb-5">
-            <label className={labelClass}>Username</label>
-
-            <input
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder="Enter username"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className={labelClass}>Password</label>
-
-            <input
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter password"
-              className={inputClass}
-              required
-            />
-          </div>
-
-          <div className="mb-8">
-            <label className={labelClass}>Address</label>
-
-            <input
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              placeholder="Enter address"
-              className={inputClass}
-              required
-            />
-          </div>
-
           <button
             type="submit"
             className="w-full rounded-xl bg-red-500 py-4 text-lg font-bold text-white transition hover:bg-red-600"
@@ -250,20 +163,14 @@ function UsersPage() {
             <p className="text-gray-400">No users added yet.</p>
           ) : (
             users.map((user) => (
-              <div
-                key={user._id}
-                className="mb-4 rounded-xl bg-[#1f1f1f] p-4"
-              >
+              <div key={user._id} className="mb-4 rounded-xl bg-[#1f1f1f] p-4">
                 <p className="font-semibold text-white">
                   {user.firstName} {user.lastName}
                 </p>
 
                 <p className="text-sm text-gray-400">{user.email}</p>
 
-                <p
-                  className="text-sm font-semibold"
-                  style={{ color: "#ef4444" }}
-                >
+                <p className="text-sm font-semibold text-red-500">
                   {user.type}
                 </p>
               </div>
