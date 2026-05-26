@@ -13,7 +13,7 @@ import {
 
 import { BarChart } from "@mui/x-charts/BarChart";
 
-/* TEMPORARY SAMPLE DATA */
+
 const driversData = [
   {
     id: 1,
@@ -59,7 +59,7 @@ const ReportsPage = () => {
   return (
     <Box>
 
-      {/* HEADER */}
+      
       <Box
         sx={{
           display: "flex",

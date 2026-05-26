@@ -43,9 +43,9 @@ const SignInPage = () => {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-gray-200 p-4">
-      {/* Main Card Container */}
+     
       <div className="flex w-full max-w-5xl overflow-hidden rounded-[2.5rem] shadow-2xl">
-        {/* LEFT SIDE: Illustration (Cream Background) */}
+      
         <div className="hidden w-1/2 flex-col items-center justify-center bg-[#f3f2eb] p-12 lg:flex">
           <img
             src={loginImg}
@@ -54,7 +54,7 @@ const SignInPage = () => {
           />
         </div>
 
-        {/* RIGHT SIDE: Login Form (Dark Green Background) */}
+        
         <div className="flex w-full flex-col justify-center bg-[#1a4335] p-8 sm:p-16 lg:w-1/2">
           <div className="mx-auto w-full max-w-sm text-white">
             <h1 className="text-4xl font-bold">Login</h1>
