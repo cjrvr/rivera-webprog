@@ -18,7 +18,6 @@ const DashLayout = () => {
 
   return (
     <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#000000" }}>
-      {/* top bar black like my navbar */}
       <AppBar
         position="fixed"
         sx={{
@@ -49,7 +48,6 @@ const DashLayout = () => {
         <Toolbar />
 
         <List>
-          {/* overview */}
           <ListItem
             component={Link}
             to="/dashboard"
@@ -63,7 +61,6 @@ const DashLayout = () => {
             <ListItemText primary="Overview" />
           </ListItem>
 
-          {/* reports / telemetry */}
           <ListItem
             component={Link}
             to="/reports"

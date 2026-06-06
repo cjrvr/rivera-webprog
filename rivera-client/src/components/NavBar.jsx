@@ -14,12 +14,10 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
       <div className="flex justify-between items-center px-6 md:px-12 py-4 max-w-7xl mx-auto">
 
-        {/* LOGO */}
         <Link to="/" className="flex items-center">
           <img src={logo} alt="Logo" className="w-12 h-auto" />
         </Link>
 
-        {/* NAV LINKS */}
         <div className="hidden md:flex gap-6 text-sm font-medium">
           {links.map((link, i) => {
             const isActive = location.pathname === link.path;
@@ -42,7 +40,6 @@ const Navbar = () => {
           })}
         </div>
 
-        {/* BUTTONS (THIS IS THE RIGHT SIDE) */}
         <div className="flex items-center gap-3">
 
           <Link

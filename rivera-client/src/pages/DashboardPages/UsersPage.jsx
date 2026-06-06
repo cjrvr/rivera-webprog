@@ -198,7 +198,6 @@ const UsersPage = () => {
         Drivers Management
       </Typography>
 
-      {/* SEARCH + FILTERS */}
 
       <Paper
         sx={{
@@ -284,7 +283,6 @@ const UsersPage = () => {
         </Button>
       </Paper>
 
-      {/* TABLE */}
 
       <Box
         sx={{
@@ -308,7 +306,6 @@ const UsersPage = () => {
         />
       </Box>
 
-      {/* MODAL FORM */}
 
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Add Driver</DialogTitle>
