@@ -70,7 +70,7 @@ const SignUpPage = () => {
         gender: "N/A",
         contactNumber: formData.contact,
         email: formData.email,
-        type: "editor",
+        type: "admin",
         username: formData.username,
         password: formData.password,
         address: "N/A",
